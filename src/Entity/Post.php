@@ -2,8 +2,18 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\PostRepository;
 use Doctrine\ORM\Mapping as ORM;
+#[ApiResource(
+    operations: [
+        new Get(normalizationContext: ['groups' => 'conference:item']),
+        new GetCollection(normalizationContext: ['groups' => 'conference:list'])
+    ],
+    paginationEnabled: false,
+)]
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
