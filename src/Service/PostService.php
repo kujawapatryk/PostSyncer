@@ -25,4 +25,10 @@ class PostService
 
         return $post;
     }
+
+    public function deletePost(Post $post): void
+    {
+        $this->entityManager->remove($post);
+        $this->entityManager->flush();
+    }
 }
